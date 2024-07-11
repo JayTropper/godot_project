@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgbfuvv0bt1sm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inyrk"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_waua7"]
+material = SubResource("StandardMaterial3D_inyrk")
+radius = 0.01
+height = 0.02
+
+[node name="Red Dot" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9908e-05, 0)
+mesh = SubResource("SphereMesh_waua7")

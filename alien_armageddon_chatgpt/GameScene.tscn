@@ -1,0 +1,297 @@
+[gd_scene load_steps=25 format=3 uid="uid://bq6whmuw4sqia"]
+
+[ext_resource type="Script" path="res://GameScene.gd" id="1_pni75"]
+[ext_resource type="PackedScene" uid="uid://cqxbjd3l0o38d" path="res://Coachgun.tscn" id="2_c8jmu"]
+[ext_resource type="AudioStream" uid="uid://d13psl14jabca" path="res://sounds/Shotgun_Blast-Jim_Rogers-1914772763.wav" id="3_pyv5p"]
+[ext_resource type="AudioStream" uid="uid://b26a8n06jajyc" path="res://sounds/shotgun-reload-old_school-RA_The_Sun_God-580332022.wav" id="4_3cnjs"]
+[ext_resource type="PackedScene" uid="uid://cn1m2i4na5kcv" path="res://AssaultRifle.tscn" id="5_nj4br"]
+[ext_resource type="PackedScene" uid="uid://d4mh4e1r8xinu" path="res://tree.tscn" id="5_uwl2d"]
+[ext_resource type="AudioStream" uid="uid://cq07y5hy6gn2v" path="res://sounds/assault_rifle_single_shot.wav" id="6_7ok37"]
+[ext_resource type="PackedScene" uid="uid://bu6qsmln6hccs" path="res://conifer.tscn" id="6_mmp04"]
+[ext_resource type="PackedScene" uid="uid://b3lysnmbd1g2f" path="res://eyeball.tscn" id="7_n5qkk"]
+[ext_resource type="AudioStream" uid="uid://dxs1fhtcosg14" path="res://sounds/assault_rifle_reload.mp3" id="7_o2vf8"]
+[ext_resource type="Texture2D" uid="uid://t06qhpg3lh76" path="res://images/3 Crosshairs/Crosshair 1.png" id="8_ogd75"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gmhj6"]
+
+[sub_resource type="Animation" id="Animation_ohw0a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eroih"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(-0.523599, -3.14159, 0), Vector3(0, -3.14159, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1cfar"]
+_data = {
+"RESET": SubResource("Animation_ohw0a"),
+"shoot": SubResource("Animation_eroih")
+}
+
+[sub_resource type="Animation" id="Animation_or8xj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(1.0472, -3.14159, 0), Vector3(0, -3.14159, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.3, -0.6, -1.3), Vector3(0.5, -1.5, -1.3), Vector3(0.3, -0.6, -1.3)]
+}
+
+[sub_resource type="Animation" id="Animation_8hhut"]
+resource_name = "reload"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(1.0472, -3.14159, 0), Vector3(0, -3.14159, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.3, -0.6, -1.3), Vector3(0.5, -0.9, -1.3), Vector3(0.3, -0.6, -1.3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q7g8i"]
+_data = {
+"RESET": SubResource("Animation_or8xj"),
+"reload_not_aiming": SubResource("Animation_8hhut")
+}
+
+[sub_resource type="Animation" id="Animation_ovv7a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.3, -0.6, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4skq1"]
+resource_name = "reload"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(1.0472, -3.14159, 0), Vector3(0, -3.14159, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.35, -1.3), Vector3(0.2, -0.9, -1.3), Vector3(0, -0.35, -1.3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4aodo"]
+_data = {
+"RESET": SubResource("Animation_ovv7a"),
+"reload_aiming": SubResource("Animation_4skq1")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57ut3"]
+size = Vector3(100, 0.2, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lmpnm"]
+albedo_color = Color(0.545098, 0.882353, 0.290196, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qw6im"]
+material = SubResource("StandardMaterial3D_lmpnm")
+size = Vector3(100, 0.2, 100)
+
+[node name="Main" type="Node3D"]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("1_pni75")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("CapsuleShape3D_gmhj6")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+keep_aspect = 0
+
+[node name="Shotgun" parent="Player/Camera3D" instance=ExtResource("2_c8jmu")]
+transform = Transform3D(-0.3, 0, -7.60555e-07, 0, 0.3, 0, 7.60555e-07, 0, -0.3, 0.3, -0.6, -1.3)
+
+[node name="shoot_sound" type="AudioStreamPlayer3D" parent="Player/Camera3D/Shotgun"]
+stream = ExtResource("3_pyv5p")
+
+[node name="shoot_animation" type="AnimationPlayer" parent="Player/Camera3D/Shotgun"]
+libraries = {
+"": SubResource("AnimationLibrary_1cfar")
+}
+
+[node name="reload_sound" type="AudioStreamPlayer3D" parent="Player/Camera3D/Shotgun"]
+stream = ExtResource("4_3cnjs")
+
+[node name="reload_animation_not_aiming" type="AnimationPlayer" parent="Player/Camera3D/Shotgun"]
+libraries = {
+"": SubResource("AnimationLibrary_q7g8i")
+}
+
+[node name="reload_animation_aiming" type="AnimationPlayer" parent="Player/Camera3D/Shotgun"]
+libraries = {
+"": SubResource("AnimationLibrary_4aodo")
+}
+
+[node name="AssaultRifle" parent="Player/Camera3D" instance=ExtResource("5_nj4br")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.327612, -0.55788, -1.07817)
+
+[node name="shoot_sound" type="AudioStreamPlayer3D" parent="Player/Camera3D/AssaultRifle"]
+stream = ExtResource("6_7ok37")
+
+[node name="reload_sound" type="AudioStreamPlayer3D" parent="Player/Camera3D/AssaultRifle"]
+stream = ExtResource("7_o2vf8")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("BoxShape3D_57ut3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("BoxMesh_qw6im")
+
+[node name="Forest" type="Node" parent="."]
+
+[node name="Tree" parent="Forest" instance=ExtResource("5_uwl2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3)
+
+[node name="Tree2" parent="Forest" instance=ExtResource("5_uwl2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.93613, 0, -24.5841)
+
+[node name="Tree3" parent="Forest" instance=ExtResource("5_uwl2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.23802, 0, -14.3407)
+
+[node name="Tree4" parent="Forest" instance=ExtResource("5_uwl2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.15501, 0, -24.7213)
+
+[node name="Conifer" parent="Forest" instance=ExtResource("6_mmp04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -18)
+
+[node name="Conifer2" parent="Forest" instance=ExtResource("6_mmp04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -17)
+
+[node name="Tree5" parent="Forest" instance=ExtResource("5_uwl2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -24)
+
+[node name="Conifer3" parent="Forest" instance=ExtResource("6_mmp04")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -11)
+
+[node name="Eyeball" parent="." instance=ExtResource("7_n5qkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.41729, -9.68575e-08, 13.5875)
+
+[node name="OverlayElements" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="OverlayElements"]
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 2
+
+[node name="CenterIndicator" type="Control" parent="OverlayElements"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 2.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="cross_hair" type="TextureRect" parent="OverlayElements/CenterIndicator"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+texture = ExtResource("8_ogd75")
+expand_mode = 1

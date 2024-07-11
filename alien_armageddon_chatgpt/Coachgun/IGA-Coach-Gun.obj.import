@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dkw12pjln8sjp"
+path="res://.godot/imported/IGA-Coach-Gun.obj-c334933bd2bfb5e81497cb1730674ffe.mesh"
+
+[deps]
+
+files=["res://.godot/imported/IGA-Coach-Gun.obj-c334933bd2bfb5e81497cb1730674ffe.mesh"]
+
+source_file="res://Coachgun/IGA-Coach-Gun.obj"
+dest_files=["res://.godot/imported/IGA-Coach-Gun.obj-c334933bd2bfb5e81497cb1730674ffe.mesh", "res://.godot/imported/IGA-Coach-Gun.obj-c334933bd2bfb5e81497cb1730674ffe.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

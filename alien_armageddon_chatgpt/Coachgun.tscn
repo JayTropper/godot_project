@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqxbjd3l0o38d"]
+
+[ext_resource type="ArrayMesh" uid="uid://dkw12pjln8sjp" path="res://Coachgun/IGA-Coach-Gun.obj" id="1_850tn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aht4r"]
+albedo_color = Color(0.831392, 0.492849, 7.70092e-07, 1)
+metallic = 1.0
+metallic_specular = 0.47
+roughness = 0.5
+
+[node name="Coachgun" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_850tn")
+surface_material_override/0 = SubResource("StandardMaterial3D_aht4r")

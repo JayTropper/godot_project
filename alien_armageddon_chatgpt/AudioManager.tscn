@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://beo3tthiswvbe"]
+
+[ext_resource type="Script" path="res://AudioManager.gd" id="1_narr5"]
+[ext_resource type="AudioStream" uid="uid://otk61moavhhi" path="res://sounds/dark-mystery-trailer-taking-our-time-131566.wav" id="2_oinul"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_narr5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_oinul")

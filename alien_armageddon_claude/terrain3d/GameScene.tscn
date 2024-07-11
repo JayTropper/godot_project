@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg22mmur0isv0"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_x1srp"]
+[ext_resource type="ArrayMesh" uid="uid://dkw12pjln8sjp" path="res://objects/Coachgun/IGA-Coach-Gun.obj" id="2_skeia"]
+[ext_resource type="Texture2D" uid="uid://t06qhpg3lh76" path="res://images/3 Crosshairs/Crosshair 1.png" id="3_8382v"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d1fon"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b5wc8"]
+size = Vector3(100, 0.1, 100)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3v8yt"]
+size = Vector2(100, 100)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("1_x1srp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_d1fon")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Shotgun" type="MeshInstance3D" parent="Player/Camera3D"]
+transform = Transform3D(-0.199756, 0, -0.00986759, 0, 0.2, 0, 0.00986759, 0, -0.199756, 0.22133, -0.328169, -0.5)
+mesh = ExtResource("2_skeia")
+
+[node name="RayCast3D" type="RayCast3D" parent="Player/Camera3D"]
+target_position = Vector3(0, 0, -100)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_b5wc8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_3v8yt")
+
+[node name="HairCross" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HairCross"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("3_8382v")
+stretch_mode = 2
