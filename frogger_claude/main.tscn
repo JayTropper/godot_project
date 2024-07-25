@@ -1,0 +1,275 @@
+[gd_scene load_steps=13 format=3 uid="uid://bjhd3hfogcxxu"]
+
+[ext_resource type="PackedScene" uid="uid://rd5bnyuja3wn" path="res://carSpawner.tscn" id="1_7ei7v"]
+[ext_resource type="Script" path="res://main.gd" id="1_qlagt"]
+[ext_resource type="PackedScene" uid="uid://cabwy5t42kwoo" path="res://frog.tscn" id="1_qltgk"]
+[ext_resource type="PackedScene" uid="uid://baw0vjsxnplh6" path="res://car.tscn" id="2_fq8m1"]
+[ext_resource type="Texture2D" uid="uid://qev8472nydq6" path="res://pictures/environment/flower_meadow.png" id="4_0042d"]
+[ext_resource type="Texture2D" uid="uid://dal2axc47mwkq" path="res://pictures/environment/street.png" id="5_5fbsy"]
+[ext_resource type="Script" path="res://LevelManager.gd" id="6_x82d5"]
+[ext_resource type="Texture2D" uid="uid://c1blvnugd41qb" path="res://pictures/environment/meadow.png" id="7_wajfc"]
+[ext_resource type="Texture2D" uid="uid://cystq5kjd3uoj" path="res://pictures/environment/Level_2.png" id="8_okgta"]
+[ext_resource type="Texture2D" uid="uid://bekyngs0jniyh" path="res://pictures/environment/meadow&trees.png" id="9_hoq64"]
+[ext_resource type="Texture2D" uid="uid://cq54dhvqa8hn7" path="res://pictures/environment/flowers.png" id="10_wlb57"]
+
+[sub_resource type="TileSet" id="TileSet_aojou"]
+
+[node name="Main" type="Node2D"]
+position = Vector2(0, -160)
+script = ExtResource("1_qlagt")
+
+[node name="Frog" parent="." instance=ExtResource("1_qltgk")]
+position = Vector2(568, 442)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_aojou")
+format = 2
+
+[node name="Levels" type="Node" parent="."]
+
+[node name="Level1_1" type="Node2D" parent="Levels"]
+position = Vector2(0, -160)
+
+[node name="Meadow" type="Sprite2D" parent="Levels/Level1_1"]
+z_index = -1
+position = Vector2(578.25, 788.499)
+scale = Vector2(1.30713, 1.58094)
+texture = ExtResource("4_0042d")
+
+[node name="Street1" type="Sprite2D" parent="Levels/Level1_1"]
+z_index = -1
+position = Vector2(577.5, 208.5)
+scale = Vector2(1.3043, 0.75266)
+texture = ExtResource("5_5fbsy")
+
+[node name="CarSpawner" type="Node2D" parent="Levels/Level1_1"]
+
+[node name="Spawner1" parent="Levels/Level1_1/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(0, 100)
+car_scene = ExtResource("2_fq8m1")
+lane_y_position = 100
+
+[node name="Spawner2" parent="Levels/Level1_1/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(1150, 200)
+car_scene = ExtResource("2_fq8m1")
+direction = -1
+lane_y_position = 200
+
+[node name="Spawner3" parent="Levels/Level1_1/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(0, 300)
+car_scene = ExtResource("2_fq8m1")
+lane_y_position = 300
+
+[node name="Level1_2" type="Node2D" parent="Levels"]
+
+[node name="Meadow" type="Sprite2D" parent="Levels/Level1_2"]
+z_index = -1
+position = Vector2(576.5, -207.75)
+scale = Vector2(1.3043, 0.855805)
+texture = ExtResource("7_wajfc")
+
+[node name="Street1" type="Sprite2D" parent="Levels/Level1_2"]
+z_index = -1
+position = Vector2(576, -481)
+scale = Vector2(1.31222, 0.824468)
+texture = ExtResource("5_5fbsy")
+
+[node name="Street2" type="Sprite2D" parent="Levels/Level1_2"]
+z_index = -1
+position = Vector2(574.5, -795.5)
+scale = Vector2(1.31109, 0.843085)
+texture = ExtResource("5_5fbsy")
+
+[node name="CarSpawner" type="Node2D" parent="Levels/Level1_2"]
+position = Vector2(0, 3)
+
+[node name="Spawner1" parent="Levels/Level1_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(0, -375)
+car_scene = ExtResource("2_fq8m1")
+lane_y_position = -225
+
+[node name="Spawner2" parent="Levels/Level1_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(1150, -480)
+car_scene = ExtResource("2_fq8m1")
+direction = -1
+lane_y_position = -330
+
+[node name="Spawner3" parent="Levels/Level1_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(0, -575)
+car_scene = ExtResource("2_fq8m1")
+lane_y_position = -425
+
+[node name="Spawner4" parent="Levels/Level1_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(1150, -700)
+car_scene = ExtResource("2_fq8m1")
+direction = -1
+lane_y_position = -550
+
+[node name="Spawner5" parent="Levels/Level1_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(0, -800)
+car_scene = ExtResource("2_fq8m1")
+lane_y_position = -650
+
+[node name="Spawner6" parent="Levels/Level1_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(1150, -900)
+car_scene = ExtResource("2_fq8m1")
+direction = -1
+lane_y_position = -750
+
+[node name="Level2_1" type="Node2D" parent="Levels"]
+
+[node name="Meadow" type="Sprite2D" parent="Levels/Level2_1"]
+z_index = -1
+position = Vector2(576.5, -1116.25)
+scale = Vector2(1.30204, 1.20412)
+texture = ExtResource("8_okgta")
+
+[node name="Street1" type="Sprite2D" parent="Levels/Level2_1"]
+z_index = -1
+position = Vector2(576, -1434)
+scale = Vector2(1.31222, 0.824468)
+texture = ExtResource("5_5fbsy")
+
+[node name="CarSpawner" type="Node2D" parent="Levels/Level2_1"]
+position = Vector2(0, -1)
+
+[node name="Spawner1" parent="Levels/Level2_1/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(0, -1335)
+car_scene = ExtResource("2_fq8m1")
+lane_y_position = -1175
+
+[node name="Spawner2" parent="Levels/Level2_1/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(1150, -1435)
+car_scene = ExtResource("2_fq8m1")
+direction = -1
+lane_y_position = -1275
+
+[node name="Spawner3" parent="Levels/Level2_1/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(0, -1535)
+car_scene = ExtResource("2_fq8m1")
+lane_y_position = -1375
+
+[node name="Spawner4" parent="Levels/Level2_1/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(1150, -1635)
+car_scene = ExtResource("2_fq8m1")
+direction = -1
+lane_y_position = -1475
+
+[node name="Spawner5" parent="Levels/Level2_1/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(0, -1735)
+car_scene = ExtResource("2_fq8m1")
+lane_y_position = -1575
+
+[node name="Spawner6" parent="Levels/Level2_1/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(1150, -1835)
+car_scene = ExtResource("2_fq8m1")
+direction = -1
+lane_y_position = -1675
+
+[node name="Street2" type="Sprite2D" parent="Levels/Level2_1"]
+z_index = -1
+position = Vector2(574.5, -1742.5)
+scale = Vector2(1.31109, 0.843085)
+texture = ExtResource("5_5fbsy")
+
+[node name="Level2_2" type="Node2D" parent="Levels"]
+
+[node name="Meadow" type="Sprite2D" parent="Levels/Level2_2"]
+z_index = -1
+position = Vector2(579, -2035)
+scale = Vector2(1.30995, 1)
+texture = ExtResource("9_hoq64")
+
+[node name="Street1" type="Sprite2D" parent="Levels/Level2_2"]
+z_index = -1
+position = Vector2(580, -2325)
+scale = Vector2(1.31222, 0.824468)
+texture = ExtResource("5_5fbsy")
+
+[node name="Flowers1" type="Sprite2D" parent="Levels/Level2_2"]
+z_index = -1
+position = Vector2(580.5, -2506)
+scale = Vector2(1.30882, 1)
+texture = ExtResource("10_wlb57")
+
+[node name="Street2" type="Sprite2D" parent="Levels/Level2_2"]
+z_index = -1
+position = Vector2(580.5, -2673.1)
+scale = Vector2(1.31109, 0.733491)
+texture = ExtResource("5_5fbsy")
+
+[node name="Flowers2" type="Sprite2D" parent="Levels/Level2_2"]
+z_index = -1
+position = Vector2(580.923, -2842)
+scale = Vector2(1.31239, 1)
+texture = ExtResource("10_wlb57")
+
+[node name="Street3" type="Sprite2D" parent="Levels/Level2_2"]
+z_index = -1
+position = Vector2(580, -2999)
+scale = Vector2(1.311, 0.68)
+texture = ExtResource("5_5fbsy")
+
+[node name="CarSpawner" type="Node2D" parent="Levels/Level2_2"]
+
+[node name="Spawner1" parent="Levels/Level2_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(0, -2225)
+car_scene = ExtResource("2_fq8m1")
+lane_y_position = -2075
+
+[node name="Spawner2" parent="Levels/Level2_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(1164, -2330)
+car_scene = ExtResource("2_fq8m1")
+direction = -1
+lane_y_position = -2180
+
+[node name="Spawner3" parent="Levels/Level2_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(-1, -2410)
+car_scene = ExtResource("2_fq8m1")
+lane_y_position = -2260
+
+[node name="Spawner4" parent="Levels/Level2_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(1160, -2590)
+car_scene = ExtResource("2_fq8m1")
+direction = -1
+lane_y_position = -2430
+
+[node name="Spawner5" parent="Levels/Level2_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(0, -2665)
+car_scene = ExtResource("2_fq8m1")
+lane_y_position = -2520
+
+[node name="Spawner6" parent="Levels/Level2_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(1150, -2740)
+car_scene = ExtResource("2_fq8m1")
+direction = -1
+lane_y_position = -2610
+
+[node name="Spawner7" parent="Levels/Level2_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(1160, -2920)
+car_scene = ExtResource("2_fq8m1")
+direction = -1
+lane_y_position = -2770
+
+[node name="Spawner8" parent="Levels/Level2_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(0, -3000)
+car_scene = ExtResource("2_fq8m1")
+lane_y_position = -2850
+
+[node name="Spawner9" parent="Levels/Level2_2/CarSpawner" instance=ExtResource("1_7ei7v")]
+position = Vector2(1150, -3080)
+car_scene = ExtResource("2_fq8m1")
+direction = -1
+lane_y_position = -2930
+
+[node name="Level2_3" type="Node2D" parent="Levels"]
+position = Vector2(1, -958)
+
+[node name="Meadow" type="Sprite2D" parent="Levels/Level2_3"]
+z_index = -1
+position = Vector2(579, -2304)
+scale = Vector2(1.30882, 1)
+texture = ExtResource("9_hoq64")
+
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("6_x82d5")

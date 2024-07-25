@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://ctd62pea8660m"]
+
+[ext_resource type="ArrayMesh" uid="uid://dkw12pjln8sjp" path="res://objects/Coachgun/IGA-Coach-Gun.obj" id="1_ntmbs"]
+[ext_resource type="Script" path="res://weapons/Weapon.gd" id="1_x8b0i"]
+[ext_resource type="AudioStream" uid="uid://mcmbqa03t4lx" path="res://sounds/double-barrel-reload-made-with-Voicemod.mp3" id="3_n2i27"]
+[ext_resource type="AudioStream" uid="uid://d13psl14jabca" path="res://sounds/Shotgun_Blast-Jim_Rogers-1914772763.wav" id="3_wfi8k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4kas"]
+albedo_color = Color(0.716236, 0.538495, 0, 1)
+metallic = 0.63
+metallic_specular = 0.59
+roughness = 0.0
+
+[sub_resource type="Animation" id="Animation_ejjda"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_cnl1d"]
+resource_name = "reload_not_aiming"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.6, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0), Vector3(0.872665, 3.66519, 0), Vector3(0.872665, 3.66519, 0), Vector3(0, 3.14159, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.6, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.1, -0.3, -0.5), Vector3(0.1, -0.6, -0.5), Vector3(0.1, -0.6, -0.5), Vector3(0.1, -0.3, -0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ae07l"]
+_data = {
+"RESET": SubResource("Animation_ejjda"),
+"reload": SubResource("Animation_cnl1d")
+}
+
+[sub_resource type="Animation" id="Animation_4iv0t"]
+resource_name = "shoot"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0), Vector3(-0.785398, 3.14159, 0), Vector3(0, 3.14159, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d0567"]
+_data = {
+"shoot": SubResource("Animation_4iv0t")
+}
+
+[node name="Shotgun" type="Node3D"]
+script = ExtResource("1_x8b0i")
+
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.2, 0, 5.07036e-07, 0, 0.2, 0, -5.07036e-07, 0, -0.2, 0.1, -0.3, -0.5)
+mesh = ExtResource("1_ntmbs")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_h4kas")
+
+[node name="MuzzlePosition" type="Marker3D" parent="."]
+transform = Transform3D(-0.2, 0, -3.31308e-08, 0, 0.2, 0, 3.31308e-08, 0, -0.2, 0.0863497, -0.105855, -1.47678)
+
+[node name="ReloadSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.1, -0.3, -0.5)
+stream = ExtResource("3_n2i27")
+
+[node name="ReloadAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Model")
+libraries = {
+"": SubResource("AnimationLibrary_ae07l")
+}
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.1, -0.3, -0.5)
+stream = ExtResource("3_wfi8k")
+
+[node name="ShootAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Model")
+libraries = {
+"": SubResource("AnimationLibrary_d0567")
+}

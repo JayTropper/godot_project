@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://d4bmy30dutbu0"]
+
+[ext_resource type="Script" path="res://weapons/Weapon.gd" id="1_m5ja0"]
+[ext_resource type="ArrayMesh" uid="uid://dj8dtw4ua5g5n" path="res://objects/highpoly_ak47.obj" id="1_uv0v3"]
+[ext_resource type="AudioStream" uid="uid://dxs1fhtcosg14" path="res://sounds/assault_rifle_reload.mp3" id="2_vl1sy"]
+[ext_resource type="AudioStream" uid="uid://cq07y5hy6gn2v" path="res://sounds/assault_rifle_single_shot.wav" id="3_fww7c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1ft3"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_ik181"]
+resource_name = "reload"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.5001, 2.3, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.442, -0.3, -0.417), Vector3(-0.15, 0, -0.417), Vector3(-0.15, 0, -0.417), Vector3(-0.15, 0, -0.417), Vector3(-0.442, -0.3, -0.417)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.3, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.872665), Vector3(0, 0, -0.872665), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1u77h"]
+_data = {
+"reload": SubResource("Animation_ik181")
+}
+
+[sub_resource type="Animation" id="Animation_16vhn"]
+resource_name = "shoot"
+length = 0.09
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.09),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.442, -0.3, -0.417), Vector3(-0.442, -0.3, -0.317), Vector3(-0.442, -0.3, -0.417)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c61eq"]
+_data = {
+"shoot": SubResource("Animation_16vhn")
+}
+
+[node name="AssaultRifle" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0208534, 0)
+script = ExtResource("1_m5ja0")
+
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.22, 0, 0, 0, 0.22, 0, 0, 0, 0.22, -0.442, -0.3, -0.417)
+mesh = ExtResource("1_uv0v3")
+surface_material_override/0 = SubResource("StandardMaterial3D_m1ft3")
+
+[node name="MuzzlePosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0957862, -0.12031, -1.43795)
+
+[node name="ReloadSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_vl1sy")
+
+[node name="ReloadAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Model")
+libraries = {
+"": SubResource("AnimationLibrary_1u77h")
+}
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_fww7c")
+
+[node name="ShootAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c61eq")
+}

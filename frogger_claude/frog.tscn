@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://cabwy5t42kwoo"]
+
+[ext_resource type="Texture2D" uid="uid://c4irre1anqsdk" path="res://pictures/frog_idle.png" id="2_n3vjc"]
+[ext_resource type="Texture2D" uid="uid://j800jx8dyrv1" path="res://pictures/frog_jump1.png" id="3_qh28b"]
+[ext_resource type="Texture2D" uid="uid://cf7gac0eokrhl" path="res://pictures/frog_jump2.png" id="4_ikrxj"]
+[ext_resource type="Texture2D" uid="uid://blrwmhvsmk7tf" path="res://pictures/frog_jump3.png" id="5_xxwnh"]
+[ext_resource type="Texture2D" uid="uid://irq4ai1oh7s" path="res://pictures/frog_jump4.png" id="6_r7y11"]
+[ext_resource type="Script" path="res://frog.gd" id="6_ute8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yt35"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtcgf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n3vjc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n3vjc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("2_n3vjc")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_qh28b")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_ikrxj")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_xxwnh")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_r7y11")
+}, {
+"duration": 0.5,
+"texture": ExtResource("2_n3vjc")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 6.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("6_ute8k")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_1yt35")
+
+[node name="Frog" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_xtcgf")
+animation = &"idle"
+
+[node name="MoveTimer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 1000000
+limit_right = 1150
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

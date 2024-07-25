@@ -8,8 +8,8 @@ var assault_rifle_icon = preload("res://images/assault_rifle_shell.png")
 
 var tween: Tween
 
-func update_ammo(current: int, max: int, weapon_type: int):
-	ammo_label.text = str(current) + " / " + str(max)
+func update_ammo(current: int, max_ammo: int, weapon_type: int):
+	ammo_label.text = str(current) + " / " + str(max_ammo)
 	
 	if tween:
 		tween.kill()

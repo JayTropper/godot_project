@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b7x2neayle5j3"
+path="res://.godot/imported/DragonEye.obj-18c6cf5fa055446b5bd9aa09dde67636.mesh"
+
+[deps]
+
+files=["res://.godot/imported/DragonEye.obj-18c6cf5fa055446b5bd9aa09dde67636.mesh"]
+
+source_file="res://objects/Dragon/Dragon/DragonEye.obj"
+dest_files=["res://.godot/imported/DragonEye.obj-18c6cf5fa055446b5bd9aa09dde67636.mesh", "res://.godot/imported/DragonEye.obj-18c6cf5fa055446b5bd9aa09dde67636.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
